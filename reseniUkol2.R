@@ -124,7 +124,6 @@ ggplot(normalnormal_chain, aes(x = mu)) +
   stat_function(fun = dnorm, args = list(mean = normalnormal_model$mean[2], sd = normalnormal_model$sd[2]), color = "blue")
 
 # 3 Anička
-library(bayesrules)
 
 #8.19
 #b - μ asi 200 mm, možná 140 az 260
