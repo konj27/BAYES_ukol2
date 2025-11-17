@@ -122,5 +122,29 @@ ggplot(normalnormal_chain, aes(x = iteration, y = mu)) +
 ggplot(normalnormal_chain, aes(x = mu)) + 
   geom_histogram(aes(y = ..density..), color = "white") + 
   stat_function(fun = dnorm, args = list(mean = normalnormal_model$mean[2], sd = normalnormal_model$sd[2]), color = "blue")
+
 # 3 Anička
+library(bayesrules)
+
+#8.19
+#b - μ asi 200 mm, možná 140 az 260
+# cca 95 % hodnot bude v rozmezi 2*smerodatne odchylky od stredni hodnoty
+# 200 - 140 = 60 ... 2*sd ... sd = 30
+plot_normal(200,30)
+
+#c
+data("penguins_bayes")
+adelie<-subset(penguins_bayes,species=="Adelie" & !is.na(flipper_length_mm))
+n<-nrow(adelie)
+y<-mean(adelie$flipper_length_mm)
+
+#d
+sigma<-sd(adelie$flipper_length_mm)
+summarize_normal_normal(200,30,sigma,y,n)
+plot_normal_normal(200,30,sigma,y,n)
+qnorm(c(0.025,0.975),y,0.5320898)
+
+#8.20
+#c
+pnorm(220, y, sd = 0.5320898) - pnorm(200, y, sd = 0.5320898)
 # 4 Petr a Honza
